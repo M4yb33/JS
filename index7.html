@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de Género</title>
+</head>
+<body>
+
+<h2>Formulario de Género</h2>
+
+<form onsubmit="mostrarGenero(event)">
+    <label><input type="radio" name="genero" value="Masculino"> Masculino</label><br>
+    <label><input type="radio" name="genero" value="Femenino"> Femenino</label><br><br>
+    <button type="submit">Enviar</button>
+</form>
+
+<p id="resultadoGenero"></p>
+
+<script>
+function mostrarGenero(event) {
+    event.preventDefault();
+
+    const opciones = document.getElementsByName("genero");
+    let seleccionado = null;
+
+    for (let opcion of opciones) {
+        if (opcion.checked) {
+            seleccionado = opcion.value;
+            break;
+        }
+    }
+
+    if (seleccionado) {
+        document.getElementById("resultadoGenero").innerText = "Seleccionado: " + seleccionado;
+    } else {
+        document.getElementById("resultadoGenero").innerText = "Por favor, selecciona un género.";
+    }
+}
+</script>
+
+</body>
+</html>
