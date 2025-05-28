@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>CRUD con Tabla</title>
+</head>
+<body>
+
+<h2>CRUD con Nombre y Edad</h2>
+
+<input type="text" id="nombre" placeholder="Nombre">
+<input type="number" id="edad" placeholder="Edad">
+<button onclick="agregar()">Agregar</button>
+<button id="btnActualizar" onclick="guardarEdicion()" style="display: none;">Actualizar</button>
+
+<table border="1" cellpadding="5" cellspacing="0">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Edad</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody id="tablaCuerpo"></tbody>
+</table>
+
+<script>
+  let datos = [];
+  let indiceEditar = null;
+
+  function mostrarTabla() {
+    const cuerpo = document.getElementById("tablaCuerpo");
+    cuerpo.innerHTML = "";
+
+    datos.forEach((dato, i) => {
+      const fila = `
+        <tr>
+          <td>${dato.nombre}</td>
+          <td>${dato.edad}</td>
+          <td>
+            <button onclick="editar(${i})">Editar</button>
+            <button onclick="eliminar(${i})">Eliminar</button>
+          </td>
+        </tr>
+      `;
+      cuerpo.innerHTML += fila;
+    });
+  }
+
+  function agregar() {
+    const nombre = document.getElementById("nombre").value.trim();
+    const edad = parseInt(document.getElementById("edad").value);
+
+    if (nombre && !isNaN(edad)) {
+      datos.push({ nombre, edad });
+      document.getElementById("nombre").value = "";
+      document.getElementById("edad").value = "";
+      mostrarTabla();
+    }
+  }
+
+  function eliminar(index) {
+    datos.splice(index, 1);
+    mostrarTabla();
+  }
+
+  function editar(index) {
+    const persona = datos[index];
+    document.getElementById("nombre").value = persona.nombre;
+    document.getElementById("edad").value = persona.edad;
+    indiceEditar = index;
+    document.getElementById("btnActualizar").style.display = "inline";
+  }
+
+  function guardarEdicion() {
+    const nombre = document.getElementById("nombre").value.trim();
+    const edad = parseInt(document.getElementById("edad").value);
+
+    if (nombre && !isNaN(edad) && indiceEditar !== null) {
+      datos[indiceEditar] = { nombre, edad };
+      indiceEditar = null;
+      document.getElementById("nombre").value = "";
+      document.getElementById("edad").value = "";
+      document.getElementById("btnActualizar").style.display = "none";
+      mostrarTabla();
+    }
+  }
+</script>
+
+</body>
+</html>
