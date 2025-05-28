@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>CRUD con Array</title>
+</head>
+<body>
+    <h2>CRUD de nombres (usando array)</h2>
+
+    <input type="text" id="nombreInput" placeholder="Escribe un nombre">
+    <button onclick="agregar()">Agregar</button>
+    <button onclick="actualizar()" style="display:none;" id="btnActualizar">Actualizar</button>
+
+    <ul id="listaNombres"></ul>
+
+    <script>
+        let nombres = [];
+        let indiceEditar = null;
+
+        function mostrarLista() {
+            const lista = document.getElementById("listaNombres");
+            lista.innerHTML = "";
+
+            nombres.forEach((nombre, index) => {
+                const li = document.createElement("li");
+                li.innerHTML = `${nombre} 
+                    <button onclick="editar(${index})">Editar</button> 
+                    <button onclick="eliminar(${index})">Eliminar</button>`;
+                lista.appendChild(li);
+            });
+        }
+
+        function agregar() {
+            const nombre = document.getElementById("nombreInput").value.trim();
+            if (nombre) {
+                nombres.push(nombre);
+                document.getElementById("nombreInput").value = "";
+                mostrarLista();
+            }
+        }
+
+        function eliminar(index) {
+            nombres.splice(index, 1);
+            mostrarLista();
+        }
+
+        function editar(index) {
+            document.getElementById("nombreInput").value = nombres[index];
+            indiceEditar = index;
+            document.getElementById("btnActualizar").style.display = "inline";
+        }
+
+        function actualizar() {
+            const nuevoNombre = document.getElementById("nombreInput").value.trim();
+            if (nuevoNombre && indiceEditar !== null) {
+                nombres[indiceEditar] = nuevoNombre;
+                indiceEditar = null;
+                document.getElementById("nombreInput").value = "";
+                document.getElementById("btnActualizar").style.display = "none";
+                mostrarLista();
+            }
+        }
+    </script>
+</body>
+</html>
