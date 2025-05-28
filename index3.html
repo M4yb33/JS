@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicios de JS - Cálculos Interactivos</title>
+</head>
+
+
+
+<body>
+
+    <h1>Ejercicios de Cálculos con JavaScript</h1>
+
+    <!-- 1. Promedio y reversa -->
+    <section>
+        <h2>1. Promedio y reversa de N números</h2>
+        <input type="number" id="cantidadNums" placeholder="Cantidad de números">
+        <button onclick="crearCamposNumeros()">Crear campos</button>
+        <div id="numerosInputs"></div>
+        <button onclick="procesarNumeros()">Procesar</button>
+        <p id="resultadoNumeros"></p>
+    </section>
+
+    <!-- 2. Serie Fibonacci -->
+    <section>
+        <h2>2. Serie Fibonacci entre dos números</h2>
+        <input type="number" id="fiboDesde" placeholder="Desde">
+        <input type="number" id="fiboHasta" placeholder="Hasta">
+        <button onclick="fibonacci()">Generar</button>
+        <p id="resultadoFibo"></p>
+    </section>
+
+    <!-- 3. Ingreso de datos genéricos -->
+    <section>
+        <h2>3. Ingreso de datos genéricos</h2>
+        <input type="number" id="cantDatos" placeholder="¿Cuántos datos vas a ingresar?">
+        <button onclick="crearCamposTexto()">Crear campos</button>
+        <div id="datosInputs"></div>
+        <button onclick="mostrarDatos()">Mostrar</button>
+        <ul id="listaDatos"></ul>
+    </section>
+
+    <!-- 4. Formulario con validación -->
+    <section>
+        <h2>4. Formulario con validación</h2>
+        <form onsubmit="return validarFormulario()">
+            <input type="text" id="nombreForm" placeholder="Nombre">
+            <input type="email" id="correoForm" placeholder="Correo">
+            <input type="number" id="edadForm" placeholder="Edad">
+            <button type="submit">Enviar</button>
+        </form>
+        <p id="resultadoForm"></p>
+    </section>
+
+    <script>
+        // 1. Promedio y reversa
+        function crearCamposNumeros() {
+            const cantidad = parseInt(document.getElementById("cantidadNums").value);
+            const contenedor = document.getElementById("numerosInputs");
+            contenedor.innerHTML = "";
+            for (let i = 0; i < cantidad; i++) {
+                const input = document.createElement("input");
+                input.type = "number";
+                input.placeholder = "Número " + (i + 1);
+                input.className = "numeroInput";
+                contenedor.appendChild(input);
+            }
+        }
+
+        function procesarNumeros() {
+            const inputs = document.querySelectorAll(".numeroInput");
+            let numeros = [];
+            inputs.forEach(input => {
+                const val = parseFloat(input.value);
+                if (!isNaN(val)) numeros.push(val);
+            });
+            const suma = numeros.reduce((a, b) => a + b, 0);
+            const promedio = numeros.length ? suma / numeros.length : 0;
+            const reversa = numeros.slice().reverse();
+            document.getElementById("resultadoNumeros").innerText =
+                "Promedio: " + promedio.toFixed(2) + " | Reversa: " + reversa.join(", ");
+        }
+
+        // 2. Fibonacci
+        function fibonacci() {
+            const desde = parseInt(document.getElementById("fiboDesde").value);
+            const hasta = parseInt(document.getElementById("fiboHasta").value);
+            let a = 0, b = 1, resultado = [];
+
+            while (a <= hasta) {
+                if (a >= desde) resultado.push(a);
+                let temp = a + b;
+                a = b;
+                b = temp;
+            }
+            document.getElementById("resultadoFibo").innerText = resultado.join(", ");
+        }
+
+        // 3. Ingreso de datos genéricos
+        function crearCamposTexto() {
+            const cantidad = parseInt(document.getElementById("cantDatos").value);
+            const contenedor = document.getElementById("datosInputs");
+            contenedor.innerHTML = "";
+            for (let i = 0; i < cantidad; i++) {
+                const input = document.createElement("input");
+                input.type = "text";
+                input.placeholder = "Dato " + (i + 1);
+                input.className = "datoInput";
+                contenedor.appendChild(input);
+            }
+        }
+
+        function mostrarDatos() {
+            const inputs = document.querySelectorAll(".datoInput");
+            const lista = document.getElementById("listaDatos");
+            lista.innerHTML = "";
+            inputs.forEach(input => {
+                const val = input.value.trim();
+                if (val) {
+                    const li = document.createElement("li");
+                    li.innerText = val;
+                    lista.appendChild(li);
+                }
+            });
+        }
+
+        // 4. Validar formulario
+        function validarFormulario() {
+            const nombre = document.getElementById("nombreForm").value.trim();
+            const correo = document.getElementById("correoForm").value.trim();
+            const edad = parseInt(document.getElementById("edadForm").value);
+            let mensaje = "";
+
+            if (!nombre || !correo || isNaN(edad)) {
+                mensaje = "Todos los campos son obligatorios.";
+            } else if (!correo.includes("@") || !correo.includes(".")) {
+                mensaje = "Correo inválido.";
+            } else if (edad < 1) {
+                mensaje = "Edad no válida.";
+            } else {
+                mensaje = "Formulario enviado correctamente ✅";
+            }
+
+            document.getElementById("resultadoForm").innerText = mensaje;
+            return false;
+        }
+    </script>
+
+</body>
+
+</html>

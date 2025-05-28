@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicios Prácticos HTML + JS</title>
+</head>
+
+<body>
+    <h1>Ejercicios de Programación</h1>
+
+    <!-- 1. Suma de dos números -->
+    <h2>1. Suma de dos números</h2>
+    <input type="number" id="num1">
+    <input type="number" id="num2">
+    <button onclick="sumar()">Sumar</button>
+    <p id="resultadoSuma"></p>
+
+    <!-- 2. Promedio de 5 números -->
+    <h2>2. Promedio de 5 números</h2>
+    <input type="number" id="n1">
+    <input type="number" id="n2">
+    <input type="number" id="n3">
+    <input type="number" id="n4">
+    <input type="number" id="n5">
+    <button onclick="promediar()">Calcular Promedio</button>
+    <p id="resultadoPromedio"></p>
+
+    <!-- 3. Ingreso dinámico a un array -->
+    <h2>3. Ingresar números a un vector y mostrar</h2>
+    <input type="number" id="valorVector">
+    <button onclick="agregarVector()">Agregar</button>
+    <button onclick="mostrarVector()">Mostrar Vector</button>
+    <p id="resultadoVector"></p>
+
+    <!-- 4. Buscar número en vector -->
+    <h2>4. Buscar número en el vector</h2>
+    <input type="number" id="buscarValor">
+    <button onclick="buscarEnVector()">Buscar</button>
+    <p id="resultadoBusqueda"></p>
+
+    <!-- 5. Ordenar vector -->
+    <h2>5. Ordenar vector (ascendente)</h2>
+    <button onclick="ordenarVector()">Ordenar</button>
+    <p id="resultadoOrdenado"></p>
+
+    <!-- 6. Validar formulario -->
+    <h2>6. Validar Formulario</h2>
+    <form onsubmit="return validarFormulario()">
+        Nombre: <input type="text" id="nombre"><br>
+        Edad: <input type="number" id="edad"><br>
+        <button type="submit">Enviar</button>
+    </form>
+    <p id="resultadoValidacion"></p>
+
+    <!-- 7. Factorial de un número -->
+    <h2>7. Factorial de un número</h2>
+    <input type="number" id="numeroFactorial">
+    <button onclick="calcularFactorial()">Calcular Factorial</button>
+    <p id="resultadoFactorial"></p>
+
+    <!-- 8. Contar vocales -->
+    <h2>8. Contar vocales en una palabra</h2>
+    <input type="text" id="textoVocales">
+    <button onclick="contarVocales()">Contar Vocales</button>
+    <p id="resultadoVocales"></p>
+
+    <!-- 9. Verificar si un número es primo -->
+    <h2>9. Verificar número primo</h2>
+    <input type="number" id="numeroPrimo">
+    <button onclick="esPrimo()">Verificar</button>
+    <p id="resultadoPrimo"></p>
+
+    <!-- 10. Convertir texto a mayúsculas/minúsculas -->
+    <h2>10. Mayúsculas y minúsculas</h2>
+    <input type="text" id="textoConvertir">
+    <button onclick="convertirTexto()">Convertir</button>
+    <p id="resultadoTexto"></p>
+
+    <!-- 11. Tabla de multiplicar -->
+    <h2>11. Tabla de multiplicar</h2>
+    <input type="number" id="numeroTabla">
+    <button onclick="tablaMultiplicar()">Mostrar Tabla</button>
+    <ul id="resultadoTabla"></ul>
+
+    <!-- 12. Área de un triángulo -->
+    <h2>12. Área de un triángulo</h2>
+    Base: <input type="number" id="baseTriangulo">
+    Altura: <input type="number" id="alturaTriangulo">
+    <button onclick="areaTriangulo()">Calcular Área</button>
+    <p id="resultadoTriangulo"></p>
+
+    <!-- 13. Mayor de tres números -->
+    <h2>13. Número mayor de tres</h2>
+    <input type="number" id="numA">
+    <input type="number" id="numB">
+    <input type="number" id="numC">
+    <button onclick="mayorDeTres()">Ver Mayor</button>
+    <p id="resultadoMayor"></p>
+
+    <!-- 14. Convertir Celsius a Fahrenheit -->
+    <h2>14. Convertir °C a °F</h2>
+    <input type="number" id="celsius">
+    <button onclick="convertirCelsius()">Convertir</button>
+    <p id="resultadoCelsius"></p>
+
+    <!-- 15. Invertir una palabra -->
+    <h2>15. Invertir palabra</h2>
+    <input type="text" id="palabraInvertir">
+    <button onclick="invertirPalabra()">Invertir</button>
+    <p id="resultadoInversion"></p>
+
+    <!-- 16. Contar pares e impares en un array -->
+    <h2>16. Pares e impares en el vector</h2>
+    <button onclick="contarParesImpares()">Contar</button>
+    <p id="resultadoParImpar"></p>
+
+
+
+    <script>
+        // 1. Suma
+        function sumar() {
+            const a = Number(document.getElementById("num1").value);
+            const b = Number(document.getElementById("num2").value);
+            document.getElementById("resultadoSuma").innerText = "Resultado: " + (a + b);
+        }
+
+        // 2. Promedio
+        function promediar() {
+            let suma = 0;
+            for (let i = 1; i <= 5; i++) {
+                suma += Number(document.getElementById("n" + i).value);
+            }
+            let promedio = suma / 5;
+            document.getElementById("resultadoPromedio").innerText = "Promedio: " + promedio;
+        }
+
+        // 3. Vector
+        let vector = [];
+
+        function agregarVector() {
+            const valor = Number(document.getElementById("valorVector").value);
+            vector.push(valor);
+            document.getElementById("valorVector").value = "";
+        }
+
+        function mostrarVector() {
+            document.getElementById("resultadoVector").innerText = "Vector: [" + vector.join(", ") + "]";
+        }
+
+        // 4. Buscar en vector
+        function buscarEnVector() {
+            const valor = Number(document.getElementById("buscarValor").value);
+            const index = vector.indexOf(valor);
+            if (index !== -1) {
+                document.getElementById("resultadoBusqueda").innerText = "Encontrado en la posición " + index;
+            } else {
+                document.getElementById("resultadoBusqueda").innerText = "No encontrado";
+            }
+        }
+
+        // 5. Ordenar vector
+        function ordenarVector() {
+            const ordenado = [...vector].sort((a, b) => a - b);
+            document.getElementById("resultadoOrdenado").innerText = "Vector ordenado: [" + ordenado.join(", ") + "]";
+        }
+
+        // 6. Validación
+        function validarFormulario() {
+            const nombre = document.getElementById("nombre").value.trim();
+            const edad = Number(document.getElementById("edad").value);
+
+            if (nombre === "" || isNaN(edad) || edad <= 0) {
+                document.getElementById("resultadoValidacion").innerText = "Datos inválidos. Revisa nombre o edad.";
+                return false;
+            }
+
+            document.getElementById("resultadoValidacion").innerText = "Formulario válido.";
+            return false; // Evita recargar la página
+        }
+
+        function calcularFactorial() {
+            let n = Number(document.getElementById("numeroFactorial").value);
+            let f = 1;
+            for (let i = 1; i <= n; i++) f *= i;
+            document.getElementById("resultadoFactorial").innerText = "Factorial: " + f;
+        }
+
+        function contarVocales() {
+            const texto = document.getElementById("textoVocales").value.toLowerCase();
+            const vocales = "aeiou";
+            let contador = 0;
+            for (let letra of texto) {
+                if (vocales.includes(letra)) contador++;
+            }
+            document.getElementById("resultadoVocales").innerText = "Vocales: " + contador;
+        }
+
+        function esPrimo() {
+            let n = Number(document.getElementById("numeroPrimo").value);
+            if (n < 2) {
+                document.getElementById("resultadoPrimo").innerText = "No es primo";
+                return;
+            }
+            for (let i = 2; i <= Math.sqrt(n); i++) {
+                if (n % i === 0) {
+                    document.getElementById("resultadoPrimo").innerText = "No es primo";
+                    return;
+                }
+            }
+            document.getElementById("resultadoPrimo").innerText = "Es primo";
+        }
+
+        function convertirTexto() {
+            let texto = document.getElementById("textoConvertir").value;
+            document.getElementById("resultadoTexto").innerText =
+                "Mayúsculas: " + texto.toUpperCase() + "\nMinúsculas: " + texto.toLowerCase();
+        }
+
+        function tablaMultiplicar() {
+            const n = Number(document.getElementById("numeroTabla").value);
+            const lista = document.getElementById("resultadoTabla");
+            lista.innerHTML = "";
+            for (let i = 1; i <= 10; i++) {
+                let li = document.createElement("li");
+                li.innerText = `${n} x ${i} = ${n * i}`;
+                lista.appendChild(li);
+            }
+        }
+
+        function areaTriangulo() {
+            const base = Number(document.getElementById("baseTriangulo").value);
+            const altura = Number(document.getElementById("alturaTriangulo").value);
+            const area = (base * altura) / 2;
+            document.getElementById("resultadoTriangulo").innerText = "Área: " + area;
+        }
+
+        function mayorDeTres() {
+            const a = Number(document.getElementById("numA").value);
+            const b = Number(document.getElementById("numB").value);
+            const c = Number(document.getElementById("numC").value);
+            const mayor = Math.max(a, b, c);
+            document.getElementById("resultadoMayor").innerText = "Mayor: " + mayor;
+        }
+
+        function convertirCelsius() {
+            const c = Number(document.getElementById("celsius").value);
+            const f = (c * 9 / 5) + 32;
+            document.getElementById("resultadoCelsius").innerText = "Fahrenheit: " + f.toFixed(2);
+        }
+
+        function invertirPalabra() {
+            const palabra = document.getElementById("palabraInvertir").value;
+            const invertida = palabra.split("").reverse().join("");
+            document.getElementById("resultadoInversion").innerText = "Invertida: " + invertida;
+        }
+
+        function contarParesImpares() {
+            let pares = 0, impares = 0;
+            for (let num of vector) {
+                if (num % 2 === 0) pares++;
+                else impares++;
+            }
+            document.getElementById("resultadoParImpar").innerText =
+                "Pares: " + pares + " | Impares: " + impares;
+        }
+
+    </script>
+</body>
+
+</html>

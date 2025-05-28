@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicios de JS - Parte 2</title>
+
+</head>
+
+<body>
+
+    <h1>Ejercicios Avanzados de JavaScript</h1>
+
+    <!-- 1. Calculadora básica -->
+    <section>
+        <h2>1. Calculadora básica</h2>
+        <input type="number" id="calc1" placeholder="Número 1">
+        <select id="operador">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+        </select>
+        <input type="number" id="calc2" placeholder="Número 2">
+        <button onclick="calcular()">Calcular</button>
+        <p id="resultadoCalc"></p>
+    </section>
+
+    <!-- 2. Validador de contraseña -->
+    <section>
+        <h2>2. Validador de contraseña</h2>
+        <input type="password" id="pass" placeholder="Escribe una contraseña">
+        <button onclick="validarPass()">Validar</button>
+        <p id="mensajePass"></p>
+    </section>
+
+    <!-- 3. Tabla de multiplicar -->
+    <section>
+        <h2>3. Tabla de multiplicar</h2>
+        <input type="number" id="numeroTabla" placeholder="Número">
+        <button onclick="generarTabla()">Generar tabla</button>
+        <ul id="tablaResultado"></ul>
+    </section>
+
+    <!-- 4. Conversor de Celsius a Fahrenheit -->
+    <section>
+        <h2>4. Conversor de Temperatura</h2>
+        <input type="number" id="celsius" placeholder="Grados Celsius">
+        <button onclick="convertirTemp()">Convertir</button>
+        <p id="resultadoTemp"></p>
+    </section>
+
+    <script>
+        // 1. Calculadora
+        function calcular() {
+            const n1 = parseFloat(document.getElementById("calc1").value);
+            const n2 = parseFloat(document.getElementById("calc2").value);
+            const op = document.getElementById("operador").value;
+            let resultado;
+
+            if (isNaN(n1) || isNaN(n2)) {
+                resultado = "Por favor ingresa números válidos.";
+            } else {
+                switch (op) {
+                    case "+": resultado = n1 + n2; break;
+                    case "-": resultado = n1 - n2; break;
+                    case "*": resultado = n1 * n2; break;
+                    case "/": resultado = n2 !== 0 ? (n1 / n2) : "Error: división por cero"; break;
+                }
+            }
+            document.getElementById("resultadoCalc").innerText = "Resultado: " + resultado;
+        }
+
+        // 2. Validar contraseña
+        function validarPass() {
+            const pass = document.getElementById("pass").value;
+            let mensaje = "";
+
+            if (pass.length < 8) {
+                mensaje = "Debe tener al menos 8 caracteres.";
+            } else if (!/[A-Z]/.test(pass)) {
+                mensaje = "Debe contener al menos una mayúscula.";
+            } else if (!/[0-9]/.test(pass)) {
+                mensaje = "Debe tener al menos un número.";
+            } else {
+                mensaje = "Contraseña válida ✅";
+            }
+
+            document.getElementById("mensajePass").innerText = mensaje;
+        }
+
+        // 3. Tabla de multiplicar
+        function generarTabla() {
+            const num = parseInt(document.getElementById("numeroTabla").value);
+            const lista = document.getElementById("tablaResultado");
+            lista.innerHTML = "";
+
+            if (!isNaN(num)) {
+                for (let i = 1; i <= 10; i++) {
+                    const item = document.createElement("li");
+                    item.textContent = `${num} x ${i} = ${num * i}`;
+                    lista.appendChild(item);
+                }
+            } else {
+                lista.innerHTML = "<li>Ingresa un número válido</li>";
+            }
+        }
+
+        // 4. Conversor Celsius a Fahrenheit
+        function convertirTemp() {
+            const celsius = parseFloat(document.getElementById("celsius").value);
+            if (!isNaN(celsius)) {
+                const fahrenheit = (celsius * 9 / 5) + 32;
+                document.getElementById("resultadoTemp").innerText = `${celsius} °C = ${fahrenheit.toFixed(1)} °F`;
+            } else {
+                document.getElementById("resultadoTemp").innerText = "Ingresa una temperatura válida.";
+            }
+        }
+    </script>
+
+</body>
+
+</html>

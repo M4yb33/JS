@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ejercicios de JavaScript</title>
+</head>
+
+<body>
+
+    <h1>Prueba de JavaScript - Ejercicios</h1>
+
+    <!-- 1. Formulario con validación -->
+    <section>
+        <h2>1. Validación de formulario</h2>
+        <form id="formulario">
+            Nombre: <input type="text" id="nombre"><br>
+            Correo: <input type="text" id="correo"><br>
+            Edad: <input type="number" id="edad"><br>
+            <button type="submit">Enviar</button>
+        </form>
+        <p id="mensaje-form"></p>
+    </section>
+
+    <!-- 2. Contador -->
+    <section>
+        <h2>2. Contador</h2>
+        <button id="decrementar">-</button>
+        <span id="contador">0</span>
+        <button id="incrementar">+</button>
+    </section>
+
+    <!-- 3. Lista de tareas -->
+    <section>
+        <h2>3. Lista de tareas</h2>
+        <input type="text" id="tareaInput" placeholder="Nueva tarea">
+        <button id="agregarTarea">Agregar</button>
+        <ul id="listaTareas"></ul>
+    </section>
+
+    <!-- 4. Cambiar estilo -->
+    <section>
+        <h2>4. Cambiar estilo</h2>
+        <p id="textoEstilo">Texto con estilo</p>
+        <button onclick="cambiarEstilo()">Cambiar color</button>
+    </section>
+
+    <!-- 5. Mostrar/Ocultar -->
+    <section>
+        <h2>5. Mostrar/Ocultar</h2>
+        <button onclick="toggleCaja()">Mostrar/Ocultar</button>
+        <div id="caja" class="oculto">¡Hola, soy la caja!</div>
+    </section>
+
+    <!-- 6. Reloj -->
+    <section>
+        <h2>6. Reloj en vivo</h2>
+        <p id="reloj"></p>
+    </section>
+
+    <!-- 7. Buscar nombre en lista -->
+    <section>
+        <h2>7. Buscar nombre</h2>
+        <input type="text" id="buscarNombre" placeholder="Buscar nombre">
+        <button onclick="buscar()">Buscar</button>
+        <p id="resultadoBusqueda"></p>
+    </section>
+
+    <!-- 8. Temporizador -->
+    <section>
+        <h2>8. Temporizador</h2>
+        <button onclick="iniciarTemporizador()">Iniciar Temporizador (3s)</button>
+        <p id="temporizadorMensaje"></p>
+    </section>
+
+    <!-- 9. Suma de dos números -->
+    <section>
+        <h2>9. Suma de dos números</h2>
+        <input type="number" id="num1">
+        <input type="number" id="num2">
+        <button onclick="sumar()">Sumar</button>
+        <p id="resultadoSuma"></p>
+    </section>
+
+    <script>
+        // 1. Validación de formulario
+        document.getElementById("formulario").addEventListener("submit", function (e) {
+            e.preventDefault();
+            const nombre = document.getElementById("nombre").value.trim();
+            const correo = document.getElementById("correo").value.trim();
+            const edad = parseInt(document.getElementById("edad").value);
+            let mensaje = "";
+            if (!nombre || !correo || !edad) {
+                mensaje = "Todos los campos son obligatorios.";
+            } else if (!correo.includes("@") || !correo.includes(".")) {
+                mensaje = "Correo inválido.";
+            } else if (edad <= 0) {
+                mensaje = "Edad inválida.";
+            } else {
+                mensaje = "Formulario válido ✅";
+            }
+            document.getElementById("mensaje-form").innerText = mensaje;
+        });
+
+        // 2. Contador
+        let contador = 0;
+        document.getElementById("incrementar").onclick = () => {
+            contador++;
+            document.getElementById("contador").innerText = contador;
+        };
+        document.getElementById("decrementar").onclick = () => {
+            if (contador > 0) contador--;
+            document.getElementById("contador").innerText = contador;
+        };
+
+        // 3. Lista de tareas
+        document.getElementById("agregarTarea").onclick = () => {
+            const tarea = document.getElementById("tareaInput").value.trim();
+            if (tarea) {
+                const li = document.createElement("li");
+                li.innerText = tarea + " ";
+                const btn = document.createElement("button");
+                btn.innerText = "Eliminar";
+                btn.onclick = () => li.remove();
+                li.appendChild(btn);
+                document.getElementById("listaTareas").appendChild(li);
+                document.getElementById("tareaInput").value = "";
+            }
+        };
+
+        // 4. Cambiar estilo
+        function cambiarEstilo() {
+            const texto = document.getElementById("textoEstilo");
+            texto.style.color = "blue";
+            texto.style.fontSize = "20px";
+        }
+
+        // 5. Mostrar/Ocultar
+        function toggleCaja() {
+            const caja = document.getElementById("caja");
+            caja.classList.toggle("oculto");
+        }
+
+        // 6. Reloj
+        setInterval(() => {
+            const ahora = new Date();
+            document.getElementById("reloj").innerText = ahora.toLocaleTimeString();
+        }, 1000);
+
+        // 7. Buscar nombre
+        const nombres = ["Juan", "Ana", "Luis", "Carlos", "Lucía"];
+        function buscar() {
+            const nombre = document.getElementById("buscarNombre").value.trim();
+            const mensaje = nombres.includes(nombre) ? "Nombre encontrado ✅" : "Nombre no encontrado ❌";
+            document.getElementById("resultadoBusqueda").innerText = mensaje;
+        }
+
+        // 8. Temporizador
+        function iniciarTemporizador() {
+            document.getElementById("temporizadorMensaje").innerText = "Espera...";
+            setTimeout(() => {
+                document.getElementById("temporizadorMensaje").innerText = "¡Tiempo cumplido!";
+            }, 3000);
+        }
+
+        // 9. Suma
+        function sumar() {
+            const n1 = parseFloat(document.getElementById("num1").value);
+            const n2 = parseFloat(document.getElementById("num2").value);
+            if (!isNaN(n1) && !isNaN(n2)) {
+                document.getElementById("resultadoSuma").innerText = "Resultado: " + (n1 + n2);
+            } else {
+                document.getElementById("resultadoSuma").innerText = "Ingresa dos números válidos.";
+            }
+        }
+    </script>
+
+</body>
+
+</html>
