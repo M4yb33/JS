@@ -3,28 +3,125 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Ejercicios Prácticos HTML + JS</title>
+    <title>Ejercicios de JavaScript</title>
 </head>
 
 <body>
-    <h1>Ejercicios de Programación</h1>
 
-    <!-- 1. Suma de dos números -->
-    <h2>1. Suma de dos números</h2>
-    <input type="number" id="num1">
-    <input type="number" id="num2">
-    <button onclick="sumar()">Sumar</button>
-    <p id="resultadoSuma"></p>
+    <h1>Prueba de JavaScript - Ejercicios</h1>
 
-    <!-- 2. Promedio de 5 números -->
-    <h2>2. Promedio de 5 números</h2>
-    <input type="number" id="n1">
-    <input type="number" id="n2">
-    <input type="number" id="n3">
-    <input type="number" id="n4">
-    <input type="number" id="n5">
-    <button onclick="promediar()">Calcular Promedio</button>
-    <p id="resultadoPromedio"></p>
+
+    <!-- 3. Lista de tareas -->
+    <section>
+        <h2>3. Lista de tareas</h2>
+        <input type="text" id="tareaInput" placeholder="Nueva tarea">
+        <button id="agregarTarea">Agregar</button>
+        <ul id="listaTareas"></ul>
+    </section>
+
+    <!-- 6. Reloj -->
+    <section>
+        <h2>6. Reloj en vivo</h2>
+        <p id="reloj"></p>
+    </section>
+
+    <!-- 7. Buscar nombre en lista -->
+    <section>
+        <h2>7. Buscar nombre</h2>
+        <input type="text" id="buscarNombre" placeholder="Buscar nombre">
+        <button onclick="buscar()">Buscar</button>
+        <p id="resultadoBusqueda"></p>
+    </section>
+
+    <!-- 8. Temporizador -->
+    <section>
+        <h2>8. Temporizador</h2>
+        <button onclick="iniciarTemporizador()">Iniciar Temporizador (3s)</button>
+        <p id="temporizadorMensaje"></p>
+    </section>
+
+
+    <section>
+        <h2>1. Calculadora básica</h2>
+        <input type="number" id="calc1" placeholder="Número 1">
+        <select id="operador">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+        </select>
+        <input type="number" id="calc2" placeholder="Número 2">
+        <button onclick="calcular()">Calcular</button>
+        <p id="resultadoCalc"></p>
+    </section>
+
+    <!-- 2. Validador de contraseña -->
+    <section>
+        <h2>2. Validador de contraseña</h2>
+        <input type="password" id="pass" placeholder="Escribe una contraseña">
+        <button onclick="validarPass()">Validar</button>
+        <p id="mensajePass"></p>
+    </section>
+
+    <!-- 3. Tabla de multiplicar -->
+    <section>
+        <h2>3. Tabla de multiplicar</h2>
+        <input type="number" id="numeroTabla" placeholder="Número">
+        <button onclick="generarTabla()">Generar tabla</button>
+        <ul id="tablaResultado"></ul>
+    </section>
+
+    <!-- 4. Conversor de Celsius a Fahrenheit -->
+    <section>
+        <h2>4. Conversor de Temperatura</h2>
+        <input type="number" id="celsius" placeholder="Grados Celsius">
+        <button onclick="convertirTemp()">Convertir</button>
+        <p id="resultadoTemp"></p>
+    </section>
+
+    <!-- 1. Promedio y reversa -->
+    <section>
+        <h2>1. Promedio y reversa de N números</h2>
+        <input type="number" id="cantidadNums" placeholder="Cantidad de números">
+        <button onclick="crearCamposNumeros()">Crear campos</button>
+        <div id="numerosInputs"></div>
+        <button onclick="procesarNumeros()">Procesar</button>
+        <p id="resultadoNumeros"></p>
+    </section>
+
+    <!-- 2. Serie Fibonacci -->
+    <section>
+        <h2>2. Serie Fibonacci entre dos números</h2>
+        <input type="number" id="fiboDesde" placeholder="Desde">
+        <input type="number" id="fiboHasta" placeholder="Hasta">
+        <button onclick="fibonacci()">Generar</button>
+        <p id="resultadoFibo"></p>
+    </section>
+
+    <!-- 3. Ingreso de datos genéricos -->
+    <section>
+        <h2>3. Ingreso de datos genéricos</h2>
+        <input type="number" id="cantDatos" placeholder="¿Cuántos datos vas a ingresar?">
+        <button onclick="crearCamposTexto()">Crear campos</button>
+        <div id="datosInputs"></div>
+        <button onclick="mostrarDatos()">Mostrar</button>
+        <ul id="listaDatos"></ul>
+    </section>
+
+
+    <!-- 4. Formulario con validación -->
+    <section>
+        <h2>4. Formulario con validación</h2>
+        <form onsubmit="return validarFormulario()">
+            <input type="text" id="nombreForm" placeholder="Nombre">
+            <input type="email" id="correoForm" placeholder="Correo">
+            <input type="number" id="edadForm" placeholder="Edad">
+            <button type="submit">Enviar</button>
+        </form>
+        <p id="resultadoForm"></p>
+    </section>
+
+    TABLAS
 
     <!-- 3. Ingreso dinámico a un array -->
     <h2>3. Ingresar números a un vector y mostrar</h2>
@@ -83,26 +180,22 @@
     <button onclick="tablaMultiplicar()">Mostrar Tabla</button>
     <ul id="resultadoTabla"></ul>
 
-    <!-- 12. Área de un triángulo -->
-    <h2>12. Área de un triángulo</h2>
-    Base: <input type="number" id="baseTriangulo">
-    Altura: <input type="number" id="alturaTriangulo">
-    <button onclick="areaTriangulo()">Calcular Área</button>
-    <p id="resultadoTriangulo"></p>
-
-    <!-- 13. Mayor de tres números -->
-    <h2>13. Número mayor de tres</h2>
-    <input type="number" id="numA">
-    <input type="number" id="numB">
-    <input type="number" id="numC">
-    <button onclick="mayorDeTres()">Ver Mayor</button>
-    <p id="resultadoMayor"></p>
+    <!-- 13. Mayor entre varios números -->
+    <section>
+        <h2>13. Mayor de varios números</h2>
+        <input type="number" id="cantidadNumeros" placeholder="¿Cuántos números?">
+        <button onclick="crearCamposMayor()">Crear campos</button>
+        <div id="contenedorNumeros"></div>
+        <button onclick="calcularMayor()">Calcular mayor</button>
+        <p id="resultadoMayor"></p>
+    </section>
 
     <!-- 14. Convertir Celsius a Fahrenheit -->
     <h2>14. Convertir °C a °F</h2>
     <input type="number" id="celsius">
     <button onclick="convertirCelsius()">Convertir</button>
     <p id="resultadoCelsius"></p>
+
 
     <!-- 15. Invertir una palabra -->
     <h2>15. Invertir palabra</h2>
@@ -318,23 +411,259 @@
     </table>
     <button onclick="ordenarNombres()">Ordenar</button>
 
-
     <script>
-        // 1. Suma
-        function sumar() {
-            const a = Number(document.getElementById("num1").value);
-            const b = Number(document.getElementById("num2").value);
-            document.getElementById("resultadoSuma").innerText = "Resultado: " + (a + b);
+
+        // 3. Lista de tareas
+        document.getElementById("agregarTarea").onclick = () => {
+            const tarea = document.getElementById("tareaInput").value.trim();
+            if (tarea) {
+                const li = document.createElement("li");
+                li.innerText = tarea + " ";
+                const btn = document.createElement("button");
+                btn.innerText = "Eliminar";
+                btn.onclick = () => li.remove();
+                li.appendChild(btn);
+                document.getElementById("listaTareas").appendChild(li);
+                document.getElementById("tareaInput").value = "";
+            }
+        };
+
+        // 6. Reloj
+        setInterval(() => {
+            const ahora = new Date();
+            document.getElementById("reloj").innerText = ahora.toLocaleTimeString();
+        }, 1000);
+
+        // 7. Buscar nombre
+        const nombres = ["Juan", "Ana", "Luis", "Carlos", "Lucía"];
+        function buscar() {
+            const nombre = document.getElementById("buscarNombre").value.trim();
+            const mensaje = nombres.includes(nombre) ? "Nombre encontrado " + nombre : "Nombre no encontrado ❌";
+            document.getElementById("resultadoBusqueda").innerText = mensaje;
         }
 
-        // 2. Promedio
-        function promediar() {
-            let suma = 0;
-            for (let i = 1; i <= 5; i++) {
-                suma += Number(document.getElementById("n" + i).value);
+        // 8. Temporizador
+        function iniciarTemporizador() {
+            document.getElementById("temporizadorMensaje").innerText = "Espera...";
+            setTimeout(() => {
+                document.getElementById("temporizadorMensaje").innerText = "¡Tiempo cumplido!";
+            }, 3000);
+        }
+
+        // 1. Calculadora
+        function calcular() {
+            const n1 = parseFloat(document.getElementById("calc1").value);
+            const n2 = parseFloat(document.getElementById("calc2").value);
+            const op = document.getElementById("operador").value;
+            let resultado;
+
+            if (isNaN(n1) || isNaN(n2)) {
+                resultado = "Por favor ingresa números válidos.";
+            } else {
+                switch (op) {
+                    case "+": resultado = n1 + n2; break;
+                    case "-": resultado = n1 - n2; break;
+                    case "*": resultado = n1 * n2; break;
+                    case "/": resultado = n2 !== 0 ? (n1 / n2) : "Error: división por cero"; break;
+                }
             }
-            let promedio = suma / 5;
-            document.getElementById("resultadoPromedio").innerText = "Promedio: " + promedio;
+            document.getElementById("resultadoCalc").innerText = "Resultado: " + resultado;
+        }
+
+        // 2. Validar contraseña
+        function validarPass() {
+            const pass = document.getElementById("pass").value;
+            let mensaje = "";
+
+            if (pass.length < 8) {
+                mensaje = "Debe tener al menos 8 caracteres.";
+            } else if (!/[A-Z]/.test(pass)) {
+                mensaje = "Debe contener al menos una mayúscula.";
+            } else if (!/[0-9]/.test(pass)) {
+                mensaje = "Debe tener al menos un número.";
+            } else {
+                mensaje = "Contraseña válida ✅";
+            }
+
+            document.getElementById("mensajePass").innerText = mensaje;
+        }
+
+        // 3. Tabla de multiplicar
+        function generarTabla() {
+            const num = parseInt(document.getElementById("numeroTabla").value);
+            const lista = document.getElementById("tablaResultado");
+            lista.innerHTML = "";
+
+            if (!isNaN(num)) {
+                for (let i = 1; i <= 10; i++) {
+                    const item = document.createElement("li");
+                    item.textContent = `${num} x ${i} = ${num * i}`;
+                    lista.appendChild(item);
+                }
+            } else {
+                lista.innerHTML = "<li>Ingresa un número válido</li>";
+            }
+        }
+
+        // 4. Conversor Celsius a Fahrenheit
+        function convertirTemp() {
+            const celsius = parseFloat(document.getElementById("celsius").value);
+            if (!isNaN(celsius)) {
+                const fahrenheit = (celsius * 9 / 5) + 32;
+                document.getElementById("resultadoTemp").innerText = `${celsius} °C = ${fahrenheit.toFixed(1)} °F`;
+            } else {
+                document.getElementById("resultadoTemp").innerText = "Ingresa una temperatura válida.";
+            }
+        }
+
+        // 1. Promedio y reversa
+        function crearCamposNumeros() {
+            const cantidad = parseInt(document.getElementById("cantidadNums").value);
+            const contenedor = document.getElementById("numerosInputs");
+            contenedor.innerHTML = "";
+            for (let i = 0; i < cantidad; i++) {
+                const input = document.createElement("input");
+                input.type = "number";
+                input.placeholder = "Número " + (i + 1);
+                input.className = "numeroInput";
+                contenedor.appendChild(input);
+            }
+        }
+
+        function procesarNumeros() {
+            const inputs = document.querySelectorAll(".numeroInput");
+            let numeros = [];
+            inputs.forEach(input => {
+                const val = parseFloat(input.value);
+                if (!isNaN(val)) numeros.push(val);
+            });
+            const suma = numeros.reduce((a, b) => a + b, 0);
+            const promedio = numeros.length ? suma / numeros.length : 0;
+            const reversa = numeros.slice().reverse();
+            document.getElementById("resultadoNumeros").innerText =
+                "Promedio: " + promedio.toFixed(2) + " | Reversa: " + reversa.join(", ");
+        }
+
+        // 2. Fibonacci
+        function fibonacci() {
+            const desde = parseInt(document.getElementById("fiboDesde").value);
+            const hasta = parseInt(document.getElementById("fiboHasta").value);
+            let a = 0, b = 1, resultado = [];
+
+            while (a <= hasta) {
+                if (a >= desde) resultado.push(a);
+                let temp = a + b;
+                a = b;
+                b = temp;
+            }
+            document.getElementById("resultadoFibo").innerText = resultado.join(", ");
+        }
+
+        // 3. Ingreso de datos genéricos
+        // Crear los campos de texto según cantidad indicada
+        function crearCamposTexto() {
+            const cantidad = parseInt(document.getElementById("cantDatos").value);
+            const contenedor = document.getElementById("datosInputs");
+            contenedor.innerHTML = "";
+            for (let i = 0; i < cantidad; i++) {
+                const input = document.createElement("input");
+                input.type = "number";
+                input.placeholder = "Dato " + (i + 1);
+                input.className = "datoInput";
+                contenedor.appendChild(input);
+            }
+        }
+
+        // Mostrar datos y operaciones
+        function mostrarDatos() {
+            const inputs = document.querySelectorAll(".datoInput");
+            const datos = [];
+
+            inputs.forEach(input => {
+                const valor = parseFloat(input.value);
+                if (!isNaN(valor)) datos.push(valor);
+            });
+
+            const lista = document.getElementById("listaDatos");
+            lista.innerHTML = "";
+            datos.forEach((dato, i) => {
+                const li = document.createElement("li");
+                li.textContent = `Dato ${i + 1}: ${dato}`;
+                lista.appendChild(li);
+            });
+
+            if (datos.length > 0) {
+                const suma = datos.reduce((a, b) => a + b, 0);
+                const resta = datos.reduce((a, b) => a - b);
+                const multiplicacion = datos.reduce((a, b) => a * b, 1);
+                const division = datos.reduce((a, b) => a / b);
+
+                const resultados = `
+                <li><strong>Suma:</strong> ${suma}</li>
+                <li><strong>Resta:</strong> ${resta}</li>
+                <li><strong>Multiplicación:</strong> ${multiplicacion}</li>
+                <li><strong>División:</strong> ${division.toFixed(2)}</li>
+            `;
+
+                lista.innerHTML += resultados;
+            } else {
+                lista.innerHTML = "<li>No se ingresaron números válidos.</li>";
+            }
+        }
+
+        // 4. Validar formulario
+        function validarFormulario() {
+            const nombre = document.getElementById("nombreForm").value.trim();
+            const correo = document.getElementById("correoForm").value.trim();
+            const edad = parseInt(document.getElementById("edadForm").value);
+            let mensaje = "";
+
+            if (!nombre || !correo || isNaN(edad)) {
+                mensaje = "Todos los campos son obligatorios.";
+            } else if (!correo.includes("@") || !correo.includes(".")) {
+                mensaje = "Correo inválido.";
+            } else if (edad < 1) {
+                mensaje = "Edad no válida.";
+            } else {
+                mensaje = "Formulario enviado correctamente ✅";
+            }
+
+            document.getElementById("resultadoForm").innerText = mensaje;
+            return false;
+        }
+
+        function crearCamposMayor() {
+            const cantidad = parseInt(document.getElementById("cantidadNumeros").value);
+            const contenedor = document.getElementById("contenedorNumeros");
+            contenedor.innerHTML = "";
+
+            for (let i = 0; i < cantidad; i++) {
+                const input = document.createElement("input");
+                input.type = "number";
+                input.className = "numeroMayor";
+                input.placeholder = "Número " + (i + 1);
+                contenedor.appendChild(input);
+            }
+        }
+
+        function calcularMayor() {
+            const inputs = document.querySelectorAll(".numeroMayor");
+            const numeros = [];
+
+            inputs.forEach(input => {
+                const valor = parseFloat(input.value);
+                if (!isNaN(valor)) {
+                    numeros.push(valor);
+                }
+            });
+
+            if (numeros.length === 0) {
+                document.getElementById("resultadoMayor").innerText = "No se ingresaron números válidos.";
+                return;
+            }
+
+            const mayor = Math.max(...numeros);
+            document.getElementById("resultadoMayor").innerText = "El número mayor es: " + mayor;
         }
 
         // 3. Vector
@@ -435,14 +764,6 @@
             const altura = Number(document.getElementById("alturaTriangulo").value);
             const area = (base * altura) / 2;
             document.getElementById("resultadoTriangulo").innerText = "Área: " + area;
-        }
-
-        function mayorDeTres() {
-            const a = Number(document.getElementById("numA").value);
-            const b = Number(document.getElementById("numB").value);
-            const c = Number(document.getElementById("numC").value);
-            const mayor = Math.max(a, b, c);
-            document.getElementById("resultadoMayor").innerText = "Mayor: " + mayor;
         }
 
         function convertirCelsius() {
@@ -619,7 +940,9 @@
         }
 
 
+
     </script>
+
 </body>
 
 </html>
